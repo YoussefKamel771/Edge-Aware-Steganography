@@ -1,0 +1,16 @@
+# configs/config.yaml
+batch_size: 16
+img_size: [256, 256]
+num_workers: 4
+
+# Training Directories
+train_cover_dir: "data/BSDS500/train"
+train_secret_dir: "data/BSDS500/test"
+train_edge_dir: "data/BSDS500/jpg_edge_images/train"
+train_limit: 200  # Optional: use a number to limit dataset size
+
+# Validation Directories
+val_cover_dir: "data/BSDS500/val"
+val_secret_dir: "data/BSDS500/test"
+val_edge_dir: "data/BSDS500/jpg_edge_images/val"
+val_limit: 40     # Example: only validate on 500 images
