@@ -51,11 +51,11 @@ def validate_step(model: torch.nn.Module,
 def train(model: torch.nn.Module,
             train_loader: torch.utils.data.DataLoader,
             val_loader: torch.utils.data.DataLoader,
+            criterion: SteganoLoss,
             config: dict,
             device: torch.device):
     """Main orchestration function for the training process."""
     optimizer = torch.optim.Adam(model.parameters(), lr=config['lr'])
-    criterion = SteganoLoss()
     scaler = GradScaler()
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3)
     
