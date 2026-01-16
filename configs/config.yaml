@@ -2,6 +2,9 @@
 batch_size: 16
 img_size: [256, 256]
 num_workers: 4
+lr: 0.0005
+epochs: 50
+model_path: "models/stegano_model.pth"
 
 # Training Directories
 train_cover_dir: "data/BSDS500/train"

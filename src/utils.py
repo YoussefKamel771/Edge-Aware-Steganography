@@ -2,7 +2,7 @@ import torch
 import matplotlib.pyplot as plt
 
 
-def visualize(model, loader, device):
+def visualize_results(model, loader, device):
     model.eval()
     with torch.no_grad():
         cover, secret, edge, _ = next(iter(loader))
