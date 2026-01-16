@@ -1,19 +1,26 @@
-# configs/config.yaml
-batch_size: 16
-img_size: [256, 256]
-num_workers: 4
-lr: 0.0005
-epochs: 50
-model_path: "models/stegano_model.pth"
-
-# Training Directories
+# --- Data Settings ---
 train_cover_dir: "data/BSDS500/train"
 train_secret_dir: "data/BSDS500/test"
 train_edge_dir: "data/BSDS500/jpg_edge_images/train"
 train_limit: 200  # Optional: use a number to limit dataset size
 
-# Validation Directories
 val_cover_dir: "data/BSDS500/val"
 val_secret_dir: "data/BSDS500/test"
 val_edge_dir: "data/BSDS500/jpg_edge_images/val"
 val_limit: 40     # Example: only validate on 500 images
+
+# --- Training Hyperparameters ---
+batch_size: 4
+img_size: [256, 256]
+lr: 0.0005
+epochs: 100
+accum_steps: 2
+num_workers: 2
+
+# --- Model & Save Paths ---
+model_path: "models/best_model.pth"
+
+# --- Loss Weights ---
+edge_alpha: 10.0
+secret_weight: 3.0
+sparsity_weight: 0.01

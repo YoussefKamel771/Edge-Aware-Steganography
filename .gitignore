@@ -3,3 +3,5 @@ data/
 notebooks/
 models/*.pth
 notes.md
+.pytest_cache/
+.vscode/
