@@ -1,6 +1,6 @@
 __pycache__/
 data/
-notebooks/
+notebooks/CNN_Stego2.ipynb
 models/*.pth
 notes.md
 .pytest_cache/
