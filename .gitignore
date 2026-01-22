@@ -1,7 +1,7 @@
 __pycache__/
 data/
 notebooks/CNN_Stego2.ipynb
-models/*.pth
+# models/*.pth
 notes.md
 .pytest_cache/
 .vscode/
