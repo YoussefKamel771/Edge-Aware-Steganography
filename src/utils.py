@@ -1,5 +1,6 @@
 import torch
 import matplotlib.pyplot as plt
+from src.model_builder import SteganoModel
 
 
 def visualize_results(model, loader, device):
@@ -25,3 +26,37 @@ def visualize_results(model, loader, device):
             plt.title(titles[i])
             plt.axis('off')
         plt.show()
+
+def load_checkpoint(checkpoint_path, device='cpu'):
+    """Initializes model and loads weights from a .pth file."""
+    try:
+        model = SteganoModel()
+        checkpoint = torch.load(checkpoint_path, map_location=device)
+        model.load_state_dict(checkpoint)
+        model.to(device)
+        model.eval()
+        print(f"Successfully loaded checkpoint from {checkpoint_path}")
+        return model
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Checkpoint not found at {checkpoint_path}")
+    except Exception as e:
+        raise RuntimeError(f"Failed to load checkpoint: {e}")
+
+def plot_stego_results(images, titles, save_path=None):
+    """Shared visualization helper for inference results."""
+    plt.figure(figsize=(15, 5))
+    for i in range(len(titles)):
+        plt.subplot(1, len(titles), i + 1)
+        # Check if image is grayscale (Edge Map)
+        cmap = 'gray' if "Edge" in titles[i] or images[i].ndim == 2 else None
+        plt.imshow(images[i], cmap=cmap)
+        plt.title(titles[i])
+        plt.axis('off')
+    plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path)
+    plt.show()
+
+# Load the model
+# device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# model = load_checkpoint(CNN_PATH_NEW, device)
