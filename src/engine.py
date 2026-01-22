@@ -17,8 +17,8 @@ def train_step(model: torch.nn.Module,
         cover, secret, edge = cover.to(device), secret.to(device), edge.to(device)
 
         with autocast():
-            stego, feat, fused = model.hide_net(cover, secret, edge)
-            recovered = model.reveal_net(stego, edge, feat, fused)
+            stego, feat, fused = model.hide_network(cover, secret, edge)
+            recovered = model.reveal_network(stego, edge, feat, fused)
             loss, _ = criterion(stego, cover, recovered, secret, edge)
             loss = loss / accum_steps
 
@@ -42,8 +42,8 @@ def validate_step(model: torch.nn.Module,
     with torch.no_grad():
         for cover, secret, edge, _ in loader:
             cover, secret, edge = cover.to(device), secret.to(device), edge.to(device)
-            stego, feat, fused = model.hide_net(cover, secret, edge)
-            recovered = model.reveal_net(stego, edge, feat, fused)
+            stego, feat, fused = model.hide_network(cover, secret, edge)
+            recovered = model.reveal_network(stego, edge, feat, fused)
             loss, _ = criterion(stego, cover, recovered, secret, edge)
             val_loss += loss.item()
     return val_loss / len(loader)
