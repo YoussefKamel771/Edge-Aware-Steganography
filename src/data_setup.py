@@ -83,7 +83,7 @@ class BSDImageNetDataset(Dataset):
 
         return cover, secret, edge, cover_name
     
-def get_transforms(img_size=(256, 256), is_train=True):
+def get_transforms(img_size=(256, 256), is_train=False):
     """Returns the transformation pipeline for RGB and Edge images."""
     if is_train:
         rgb_tf = transforms.Compose([
